@@ -4,8 +4,8 @@ const conexao = require('../infraestrutura/conxeao')
 
 class Atendimento {
     adiciona(atendimento, res) {
-        const dataCriacao = moment().format('YYYY-MM-DD HH:mm:SS')
-        const data = moment(atendimento.data, 'DD/MM/YYYY').format('YYYY-MM-DD HH:mm:SS')
+        const dataCriacao = moment().format('YYYY-MM-DD HH:mm:ss')
+        const data = moment(atendimento.data, 'DD/MM/YYYY').format('YYYY-MM-DD HH:mm:ss')
         
         const dateIsValid = moment(data).isSameOrAfter(dataCriacao)
         const clientIsValid = atendimento.cliente.length >= 3
@@ -42,6 +42,31 @@ class Atendimento {
                 }
             })
         }
+    }
+
+    lista(res) {
+        const sql = 'SELECT * FROM Atendimentos'
+
+        conexao.query(sql, (erro, resultados) => {
+            if (erro) {
+                res.status(400).json(erro)
+            } else {
+                res.status(200).json(resultados)
+            }
+        })
+    }
+
+    buscaPorId(id, res) {
+        const sql = `SELECT * FROM Atendimentos where id=${id}`
+        
+        conexao.query(sql, (erro, resultados) => {
+            const atendimento = resultados[0]
+            if (erro) {
+                res.status(400).json(erro)
+            } else {
+                res.status(200).json(atendimento)
+            }
+        })
     }
 }
 
