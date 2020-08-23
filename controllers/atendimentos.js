@@ -17,4 +17,11 @@ module.exports = app => {
 
         atendimento.adiciona(dadosAtendimento, res)
     })
+
+    app.patch('/atendimentos/:id', (req, res) => {
+        const id = parseInt(req.params.id)
+        const valores = req.body
+
+        atendimento.altera(id, valores, res)
+    })
 }
