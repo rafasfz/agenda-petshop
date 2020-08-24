@@ -1,5 +1,4 @@
 const atendimento = require('../models/atendimentos')
-const atendimentos = require('../models/atendimentos')
 
 module.exports = app => {
     app.get('/atendimentos', (req, res) => {

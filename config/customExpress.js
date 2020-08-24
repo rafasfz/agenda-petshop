@@ -1,5 +1,5 @@
 const express = require('express')
-const consing = require('consign')
+const consign = require('consign')
 const bodyParser = require('body-parser')
 
 module.exports = () => {
@@ -8,7 +8,7 @@ module.exports = () => {
     app.use(bodyParser.urlencoded({ extended: true }))
     app.use(bodyParser.json())
 
-    consing()
+    consign()
         .include('controllers')
         .into(app)
 

@@ -1,5 +1,5 @@
 const customExpress = require('./config/customExpress')
-const conexao = require('./infraestrutura/conxeao')
+const conexao = require('./infraestrutura/conexao')
 const tabelas = require('./infraestrutura/tabelas')
 
 const con = new Promise((resolve, reject) => {
